@@ -70,18 +70,39 @@ const Container = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  width: 300px;
   transition: opacity 0.5s linear;
 `;
 
+const Info = styled("div")`
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+`;
+
 const Song = styled("h1")`
-  font-size: 13px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
   margin: 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Artist = styled("h2")`
+  font-family: inherit;
   font-size: 11px;
   font-weight: normal;
   margin: 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Cover = styled("img")`
@@ -92,8 +113,10 @@ const Cover = styled("img")`
 `;
 
 const Button = styled("div")`
-  display: inline-block;
-  padding: 4px 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 
   &:hover svg {
     color: #ccc;
@@ -104,6 +127,13 @@ const Button = styled("div")`
   }
 `;
 
+const Controls = styled("div")`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+`;
+
 const Separator = styled("div")`
   background: rgba(255, 255, 255, 0.2);
   border-radius: 0;
@@ -112,8 +142,6 @@ const Separator = styled("div")`
   margin: 4px 0;
   position: relative;
   max-width: 12em;
-
-  box-shadow: 0px 1px 4px #000000;
 
   &::after {
     content: "";
@@ -190,20 +218,20 @@ const render = (data) => {
   return (
     <Container style={{ opacity: !appAvailable ? 0 : playing ? 1 : 0.3 }}>
       <Cover src={cover} size={size} />
-      <div>
+      <Info>
         <Song>{song}</Song>
         <Separator position={position} />
         <Artist>
           {artist}
           {artist && album ? " – " : ""}
-          <em>{album}</em>
+          <span>{album}</span>
         </Artist>
-        <div style={{ marginLeft: -4 }}>
+        <Controls>
           <FFButton backwards dispatch={data.dispatch} />
           <PlayPauseButton playing={playing} dispatch={data.dispatch} />
           <FFButton dispatch={data.dispatch} />
-        </div>
-      </div>
+        </Controls>
+      </Info>
     </Container>
   );
 };
@@ -212,11 +240,9 @@ const className = `
   cursor: default;
   user-select: none;
   font-family: Source Han Code JP, Helvetica Neue;
-  text-shadow: 0px 1px 4px #000000;
-  bottom: 640px;
-  left: 325px;
+  top: 330px;
+  left: 40px;
   color: #fff;
-  max-width: 20em;
   fill: #fff;
 `;
 

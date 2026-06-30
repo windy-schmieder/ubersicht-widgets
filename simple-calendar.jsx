@@ -8,6 +8,17 @@ export const className = `
   color: #FFFFFF;
   top: 10px;
   left: 40px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  width: 300px;
+  min-height: 285px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 const rect = '30px';
 const baseFontSize = '16px';
@@ -41,6 +52,7 @@ const parse = output => {
 const headerCss = css`
   padding-left: 5px;
   font-size: ${baseFontSize} * 1.4em;
+  margin-top: 0;
   margin-bottom: 10px;
 `
 const header = (month, year) => <h1 className={headerCss}>{month} <span>{year}</span></h1>
@@ -49,6 +61,7 @@ const header = (month, year) => <h1 className={headerCss}>{month} <span>{year}</
 const tableCss = css`
   border-collapse: collapse;
   table-layout: fixed;
+  white-space: nowrap;
   font-size: ${baseFontSize};
 
   th {
@@ -82,8 +95,8 @@ const todayDecoCss = css`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0c0c0d;
-  opacity: 0.1;
+  background-color: #7ab8f5;
+  opacity: 0.35;
   border-radius: 50%;
 `
 
